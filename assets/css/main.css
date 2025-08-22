@@ -1,0 +1,30 @@
+@import 'tailwindcss';
+@import './theme.css';
+@import './components.css';
+@import './base.css';
+
+.icon {
+	color: var(--icon-primary);
+	vertical-align: middle;
+}
+
+.icon-xs {
+	width: 14px;
+	height: 14px;
+}
+.icon-s {
+	width: 16px;
+	height: 16px;
+}
+.icon-sm {
+	width: 18px;
+	height: 18px;
+}
+.icon-m {
+	width: 20px;
+	height: 20px;
+}
+.icon-md {
+	width: 24px;
+	height: 24px;
+}
