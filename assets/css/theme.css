@@ -4,7 +4,10 @@
 
 	--color-dark-800: #0a0a0b;
 
+	--color-red-400: #ff5e58;
 	--color-red-500: #e63b3b;
+
+	--color-yellow-500: #febc2e;
 
 	--color-gray-100: #f9f9f9;
 	--color-gray-200: #f8f9fc;
@@ -22,4 +25,5 @@
 
 	/* Shadows */
 	--shadow-sm: 0px 3px 35px rgba(0, 0, 0, 0.04);
+	--shadow-md: 0px 4px 10px rgba(0, 0, 0, 0.25);
 }

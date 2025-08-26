@@ -456,257 +456,17 @@
 			</div>
 		</div>
 		<div class="record-main-wrapper">
-			<div class="recorder-resizer-nav hidden">
-				<div class="flex items-center gap-1">
-					<div class="dropdown-wrapper">
-						<button class="dropdown-btn btn btn-box-white">
-							<svg class="icon size-4">
-								<use href="#icon-webcam-effect"></use>
-							</svg>
-						</button>
-						<div
-							class="dropdown-body bottom-auto top-[calc(100%+10px)] p-5 w-[376px] hidden"
-						>
-							<button
-								class="btn btn-box-white size-8 hover:bg-gray-200 absolute right-2 top-2"
-							>
-								<svg class="icon size-3">
-									<use href="#icon-close"></use>
-								</svg>
-							</button>
-							<div class="dropdown-content">
-								<strong class="text-base font-semibold">
-									Webcam Background Effects
-								</strong>
-								<div class="mt-5">
-									<img
-										src="./assets/images/background/bg-1.png"
-										alt="Background 1"
-										class="rounded-lg object-cover size-full"
-									/>
-								</div>
-								<ul class="bg-choose-list">
-									<li class="bg-gray-100 border border-gray-600">
-										<div class="relative z-1">
-											<svg class="icon icon-md">
-												<use href="#icon-disable"></use>
-											</svg>
-											<span class="text-[13px] font-medium">None</span>
-										</div>
-									</li>
-									<li>
-										<img
-											src="./assets/images/background/bg-blur.png"
-											alt="Background Blur"
-										/>
-										<div class="relative z-1">
-											<svg class="icon icon-md">
-												<use href="#icon-blur"></use>
-											</svg>
-											<span class="text-[13px] font-medium">Blur</span>
-										</div>
-									</li>
-									<li class="bg-gray-100">
-										<div class="relative z-1">
-											<svg class="icon icon-md">
-												<use href="#icon-add-image"></use>
-											</svg>
-											<span class="text-[13px] font-medium">Custom</span>
-										</div>
-									</li>
-									<li class="active">
-										<img
-											src="./assets/images/background/bg-2.png"
-											alt="Background 2"
-										/>
-									</li>
-									<li>
-										<img
-											src="./assets/images/background/bg-3.png"
-											alt="Background 3"
-										/>
-									</li>
-									<li>
-										<img
-											src="./assets/images/background/bg-4.png"
-											alt="Background 4"
-										/>
-									</li>
-									<li>
-										<img
-											src="./assets/images/background/bg-5.png"
-											alt="Background 5"
-										/>
-									</li>
-									<li>
-										<img
-											src="./assets/images/background/bg-6.png"
-											alt="Background 6"
-										/>
-									</li>
-									<li>
-										<img
-											src="./assets/images/background/bg-7.png"
-											alt="Background 7"
-										/>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="dropdown-wrapper">
-						<button class="dropdown-btn btn btn-box-white">
-							<svg class="icon size-4">
-								<use href="#icon-webcam-shapes"></use>
-							</svg>
-						</button>
-						<div
-							class="dropdown-body bottom-auto top-[calc(100%+10px)] p-5 w-[15.5rem] hidden"
-						>
-							<button
-								class="btn btn-box-white size-8 hover:bg-gray-200 absolute right-2 top-2"
-							>
-								<svg class="icon size-3">
-									<use href="#icon-close"></use>
-								</svg>
-							</button>
-							<div class="dropdown-content">
-								<strong class="text-base font-semibold"> Webcam Shapes </strong>
-								<div class="mt-3.5 grid grid-cols-2 gap-2">
-									<div
-										class="h-[72px] flex items-center justify-center bg-gray-300 rounded-lg [&.active]:bg-blue-500/15"
-									>
-										<span
-											class="size-8.5 flex justify-center items-center rounded-full border-[1.5px] border-dark-800"
-										>
-											<svg class="icon icon-sm">
-												<use href="#icon-user"></use>
-											</svg>
-										</span>
-									</div>
-									<div
-										class="h-[72px] flex items-center justify-center bg-gray-300 rounded-lg [&.active]:bg-blue-500/15"
-									>
-										<span
-											class="size-10 flex justify-center items-center rounded-lg border-[1.5px] border-dark-800"
-										>
-											<svg class="icon icon-sm">
-												<use href="#icon-user"></use>
-											</svg>
-										</span>
-									</div>
-									<div
-										class="h-[72px] flex items-center justify-center bg-gray-300 rounded-lg [&.active]:bg-blue-500/15"
-									>
-										<span
-											class="w-14.5 h-7 flex justify-center items-center rounded-lg border-[1.5px] border-dark-800"
-										>
-											<svg class="icon icon-sm">
-												<use href="#icon-user"></use>
-											</svg>
-										</span>
-									</div>
-									<div
-										class="active h-[72px] flex items-center justify-center bg-gray-300 rounded-lg [&.active]:bg-blue-500/15"
-									>
-										<span
-											class="w-7 h-12.5 flex justify-center items-center rounded-lg border-[1.5px] border-dark-800"
-										>
-											<svg class="icon icon-sm">
-												<use href="#icon-user"></use>
-											</svg>
-										</span>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<button class="btn btn-box-white">
-						<svg class="icon size-4">
-							<use href="#icon-webcam-crop"></use>
-						</svg>
-					</button>
-				</div>
-			</div>
 			<div
-				class="record-alert-mic record-alert-dark bottom-[calc(100%+4px)] pl-3"
+				class="flex flex-col max-w-full justify-center items-center w-[56.25rem] h-[31.25rem] relative rounded-2xl overflow-hidden px-10.5 bg-white"
 			>
-				<div class="flex items-center gap-x-2">
-					<svg class="icon size-4">
-						<use href="#icon-warning"></use>
-					</svg>
-					<p>Your microphone is muted</p>
-				</div>
-				<div class="flex items-center">
-					<button type="button" class="btn bg-white/15 font-normal px-2.5 h-8">
-						Unmute
-					</button>
-					<span class="cursor-pointer size-8 flex items-center justify-center">
-						<svg class="icon size-3">
-							<use href="#icon-close"></use>
-						</svg>
-					</span>
-				</div>
-			</div>
-			<div
-				class="flex flex-col max-w-full justify-center items-center w-[56.25rem] h-[31.25rem] relative rounded-2xl overflow-hidden px-10.5"
-			>
-				<div class="record-start-time hidden">
-					<span>
-						<svg
-							width="40"
-							height="58"
-							viewBox="0 0 40 58"
-							fill="none"
-							xmlns="http://www.w3.org/2000/svg"
-						>
-							<path
-								d="M20.1904 57.3929C8.84082 57.3929 1.49023 51.0706 0.766602 42.387L0.728516 41.93H7.31738L7.35547 42.3108C7.88867 47.7191 12.8779 51.4515 20.1904 51.4515C27.3887 51.4515 32.3018 47.4144 32.3018 41.5872V41.511C32.3018 34.7698 27.4648 30.9993 19.7715 30.9993H12.8779V25.2103H19.4668C26.0176 25.2103 30.5879 21.1732 30.5879 15.6888V15.6126C30.5879 9.86163 26.8174 6.54816 20.1143 6.54816C13.6396 6.54816 9.03125 9.97589 8.45996 15.5364L8.42188 15.9173H1.83301L1.87109 15.5364C2.74707 6.58624 9.83105 0.60675 20.1143 0.60675C30.5879 0.60675 37.4814 6.4339 37.4814 14.7747V14.8509C37.4814 21.6302 32.6826 26.2767 25.8272 27.7239V27.8763C33.8252 28.5618 39.2715 33.5511 39.2715 41.3587V41.4349C39.2715 50.6136 31.1973 57.3929 20.1904 57.3929Z"
-								fill="white"
-							/>
-						</svg>
-					</span>
-					<span>Cancel</span>
-				</div>
-				<img
-					src="./assets/images/background/main-bg.png"
-					alt=""
-					class="absolute inset-0 w-full h-full object-cover"
-				/>
-				<div
-					class="grid grid-cols-[200px_1fr] gap-4 h-[24.125rem] relative z-1"
-				>
-					<div class="recorder-box-webcam h-full relative">
-						<div class="recorder-resizer hidden">
-							<span class="-top-1.5 -right-1.5"></span>
-							<span class="-top-1.5 -left-1.5"></span>
-							<span class="-bottom-1.5 -left-1.5"></span>
-							<span class="-bottom-1.5 -right-1.5"></span>
-						</div>
-						<img
-							class="rounded-xl object-cover size-full"
-							src="./assets/images/camera.png"
-							alt="Camera"
-						/>
-					</div>
-					<div class="recorder-box-screen h-full relative">
-						<div class="recorder-resizer hidden">
-							<span class="-top-1.5 -right-1.5"></span>
-							<span class="-top-1.5 -left-1.5"></span>
-							<span class="-bottom-1.5 -left-1.5"></span>
-							<span class="-bottom-1.5 -right-1.5"></span>
-						</div>
-						<img
-							class="rounded-xl object-cover size-full"
-							src="./assets/images/screen.png"
-							alt="screen"
-						/>
-					</div>
-				</div>
+				<p class="max-w-[19.6875rem] text-center">
+					To start recording, turn on your camera, microphone, or share your
+					screen
+				</p>
 			</div>
 			<ul class="flex items-center gap-x-5 mt-8">
 				<li class="dropdown-wrapper recorder-nav-item disabled">
-					<div class="dropdown-btn recorder-nav-item-top">
+					<div class="recorder-nav-item-top">
 						<svg class="icon icon-md [.disabled_&]:hidden">
 							<use href="#icon-camera"></use>
 						</svg>
@@ -721,21 +481,17 @@
 					<div class="dropdown-body w-[14.2rem] hidden">
 						<ul class="dropdown-content">
 							<li class="dropdown-wrapper recorder-nav-dropdown-item">
-								<div
-									class="dropdown-btn flex items-center justify-between size-full"
-								>
-									<div class="flex flex-col gap-1">
-										<span class="font-medium text-sm">Camera</span>
-										<span class="text-xs text-gray-800"
-											>iPhone 15 Pro (Front Cam)</span
-										>
-									</div>
-									<svg class="icon icon-md flex-shrink-0">
-										<use href="#icon-chevron-right"></use>
-									</svg>
+								<div class="flex flex-col gap-1">
+									<span class="font-medium text-sm">Camera</span>
+									<span class="text-xs text-gray-800"
+										>iPhone 15 Pro (Front Cam)</span
+									>
 								</div>
+								<svg class="icon icon-md flex-shrink-0">
+									<use href="#icon-chevron-right"></use>
+								</svg>
 								<div
-									class="dropdown-body w-[18.75rem] p-2 left-[calc(100%+15px)] top-0 bottom-auto translate-x-0 hidden"
+									class="dropdown-body w-[18.75rem] p-2 left-[calc(100%+15px)] top-0 bottom-auto translate-x-0"
 								>
 									<div class="dropdown-content">
 										<div class="recorder-nav-dropdown-item">
@@ -762,8 +518,8 @@
 						</ul>
 					</div>
 				</li>
-				<li class="dropdown-wrapper recorder-nav-item active">
-					<div class="dropdown-btn recorder-nav-item-top">
+				<li class="dropdown-wrapper recorder-nav-item disabled">
+					<div class="recorder-nav-item-top">
 						<svg class="icon icon-md [.disabled_&]:hidden">
 							<use href="#icon-microphone"></use>
 						</svg>
@@ -778,22 +534,18 @@
 					<div class="dropdown-body w-[18.75rem] hidden">
 						<ul class="dropdown-content">
 							<li class="dropdown-wrapper recorder-nav-dropdown-item">
-								<div
-									class="dropdown-btn size-full flex justify-between items-center"
-								>
-									<div class="flex flex-col gap-1">
-										<span class="font-medium text-sm">Input Device</span>
-										<span class="text-xs text-gray-800"
-											>Default - Headset Microphone (CORSAIR HS60 PRO
-											SURROUND)</span
-										>
-									</div>
-									<svg class="icon icon-md flex-shrink-0">
-										<use href="#icon-chevron-right"></use>
-									</svg>
+								<div class="flex flex-col gap-1">
+									<span class="font-medium text-sm">Input Device</span>
+									<span class="text-xs text-gray-800"
+										>Default - Headset Microphone (CORSAIR HS60 PRO
+										SURROUND)</span
+									>
 								</div>
+								<svg class="icon icon-md flex-shrink-0">
+									<use href="#icon-chevron-right"></use>
+								</svg>
 								<div
-									class="dropdown-body w-[18.75rem] p-2 left-[calc(100%+15px)] top-0 bottom-auto translate-x-0 hidden"
+									class="dropdown-body w-[18.75rem] p-2 left-[calc(100%+15px)] top-0 bottom-auto translate-x-0"
 								>
 									<div class="dropdown-content">
 										<div class="recorder-nav-dropdown-item">
@@ -820,7 +572,7 @@
 					</div>
 				</li>
 				<li class="recorder-nav-item">
-					<div class="dropdown-btn recorder-nav-item-top">
+					<div class="recorder-nav-item-top">
 						<svg class="icon icon-md">
 							<use href="#icon-screen"></use>
 						</svg>
@@ -828,7 +580,7 @@
 					<span class="recorder-nav-item-bottom">Screen</span>
 				</li>
 				<li class="recorder-nav-item">
-					<div class="dropdown-btn recorder-nav-item-top">
+					<div class="recorder-nav-item-top">
 						<svg class="icon icon-md">
 							<use href="#icon-notes"></use>
 						</svg>
@@ -836,7 +588,7 @@
 					<span class="recorder-nav-item-bottom">Notes</span>
 				</li>
 				<li class="dropdown-wrapper recorder-nav-item">
-					<div class="dropdown-btn recorder-nav-item-top">
+					<div class="recorder-nav-item-top">
 						<svg class="icon icon-md">
 							<use href="#icon-layout"></use>
 						</svg>
@@ -1000,7 +752,7 @@
 					</div>
 				</li>
 				<li class="dropdown-wrapper recorder-nav-item">
-					<div class="dropdown-btn recorder-nav-item-top">
+					<div class="recorder-nav-item-top">
 						<svg class="icon icon-md">
 							<use href="#icon-canvas"></use>
 						</svg>
@@ -1120,7 +872,7 @@
 					</div>
 				</li>
 				<li class="dropdown-wrapper recorder-nav-item">
-					<div class="dropdown-btn recorder-nav-item-top">
+					<div class="recorder-nav-item-top">
 						<svg class="icon icon-md">
 							<use href="#icon-size"></use>
 						</svg>
@@ -1153,7 +905,7 @@
 					</div>
 				</li>
 				<li class="dropdown-wrapper recorder-nav-item">
-					<div class="dropdown-btn recorder-nav-item-top">
+					<div class="recorder-nav-item-top">
 						<svg class="icon icon-md">
 							<use href="#icon-settings"></use>
 						</svg>
@@ -1162,40 +914,36 @@
 					<div class="dropdown-body w-[18.75rem] hidden">
 						<ul class="dropdown-content">
 							<li class="dropdown-wrapper recorder-nav-dropdown-item">
+								<div class="flex flex-col gap-1">
+									<span class="font-medium text-sm">Video Quality</span>
+									<span class="text-xs text-gray-800">Standard 720p</span>
+								</div>
+								<svg class="icon icon-md flex-shrink-0">
+									<use href="#icon-chevron-right"></use>
+								</svg>
 								<div
-									class="dropdown-btn size-full flex justify-between items-center"
+									class="dropdown-body w-[15.625rem] p-2 left-[calc(100%+15px)] top-0 bottom-auto translate-x-0"
 								>
-									<div class="flex flex-col gap-1">
-										<span class="font-medium text-sm">Video Quality</span>
-										<span class="text-xs text-gray-800">Standard 720p</span>
-									</div>
-									<svg class="icon icon-md flex-shrink-0">
-										<use href="#icon-chevron-right"></use>
-									</svg>
-									<div
-										class="dropdown-body w-[15.625rem] p-2 left-[calc(100%+15px)] top-0 bottom-auto translate-x-0 hidden"
-									>
-										<div class="dropdown-content">
-											<div class="recorder-nav-dropdown-item">
-												<span class="font-medium"
-													>Standard
-													<span class="text-dark-800/60">720P</span></span
-												>
-											</div>
-											<div class="recorder-nav-dropdown-item py-0">
-												<span class="font-medium"
-													>High Definition
-													<span class="text-dark-800/60">1080P</span></span
-												>
-												<span
-													class="bg-blue-500 text-white text-xs font-medium rounded-md px-2 h-6.5 flex items-center gap-1"
-												>
-													<svg class="icon icon-sm">
-														<use href="#icon-premium"></use>
-													</svg>
-													Plus
-												</span>
-											</div>
+									<div class="dropdown-content">
+										<div class="recorder-nav-dropdown-item">
+											<span class="font-medium"
+												>Standard
+												<span class="text-dark-800/60">720P</span></span
+											>
+										</div>
+										<div class="recorder-nav-dropdown-item py-0">
+											<span class="font-medium"
+												>High Definition
+												<span class="text-dark-800/60">1080P</span></span
+											>
+											<span
+												class="bg-blue-500 text-white text-xs font-medium rounded-md px-2 h-6.5 flex items-center gap-1"
+											>
+												<svg class="icon icon-sm">
+													<use href="#icon-premium"></use>
+												</svg>
+												Plus
+											</span>
 										</div>
 									</div>
 								</div>
@@ -1250,7 +998,7 @@
 			<div class="flex flex-col h-full">
 				<div class="flex-1 relative pt-11.5 px-7">
 					<textarea
-						class="w-full h-full resize-none outline-none border-none text-xl font-medium text-dark-800/34 placeholder:text-dark-800/34 pb-15"
+						class="w-full h-full resize-none outline-none border-none text-xl font-medium text-dark-800/34 placeholder:text-dark-800/34 pb-5"
 						placeholder="Start typing or paste text here..."
 					></textarea>
 					<button
@@ -1362,7 +1110,6 @@
 			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
 			crossorigin="anonymous"
 		></script>
-		<script src="./assets/js/dropdown.js"></script>
 		<script src="./assets/js/main.js"></script>
 	</body>
 </html>
