@@ -136,7 +136,7 @@
 					fill-rule="evenodd"
 					clip-rule="evenodd"
 					d="M17.8427 5.5C18.017 5.5 18.1842 5.56925 18.3075 5.69252C18.4307 5.81579 18.5 5.98298 18.5 6.1573V12C18.5 12.1743 18.4307 12.3415 18.3075 12.4648C18.1842 12.5881 18.017 12.6573 17.8427 12.6573C17.6684 12.6573 17.5012 12.5881 17.3779 12.4648C17.2546 12.3415 17.1854 12.1743 17.1854 12V7.7436L7.7436 17.1854H12C12.1743 17.1854 12.3415 17.2546 12.4648 17.3779C12.5881 17.5012 12.6573 17.6684 12.6573 17.8427C12.6573 18.017 12.5881 18.1842 12.4648 18.3075C12.3415 18.4307 12.1743 18.5 12 18.5H6.1573C5.98298 18.5 5.81579 18.4307 5.69252 18.3075C5.56925 18.1842 5.5 18.017 5.5 17.8427V12C5.5 11.9137 5.517 11.8282 5.55003 11.7485C5.58307 11.6687 5.63148 11.5963 5.69252 11.5352C5.75356 11.4742 5.82602 11.4258 5.90576 11.3927C5.98551 11.3597 6.07099 11.3427 6.1573 11.3427C6.24362 11.3427 6.32909 11.3597 6.40884 11.3927C6.48859 11.4258 6.56105 11.4742 6.62209 11.5352C6.68312 11.5963 6.73154 11.6687 6.76457 11.7485C6.79761 11.8282 6.81461 11.9137 6.81461 12V16.2564L16.2564 6.81461H12C11.8257 6.81461 11.6585 6.74536 11.5352 6.62209C11.4119 6.49882 11.3427 6.33163 11.3427 6.1573C11.3427 5.98298 11.4119 5.81579 11.5352 5.69252C11.6585 5.56925 11.8257 5.5 12 5.5H17.8427Z"
-					fill="#0A0A0B"
+					fill="currentColor"
 				/>
 			</symbol>
 			<symbol id="icon-settings" viewBox="0 0 24 24" fill="none">
@@ -420,7 +420,7 @@
 				</li>
 			</ul>
 			<div class="ml-auto flex items-center gap-x-4">
-				<button class="btn btn-red">
+				<button class="btn btn-red" id="start-record">
 					<span class="size-3 bg-white rounded-full"></span>
 					<span>Record</span>
 				</button>
@@ -629,7 +629,7 @@
 				</div>
 			</div>
 			<div
-				class="record-alert-mic record-alert-dark bottom-[calc(100%+4px)] pl-3"
+				class="record-alert-mic record-alert-dark bottom-[calc(100%+4px)] pl-3 hidden"
 			>
 				<div class="flex items-center gap-x-2">
 					<svg class="icon size-4">
@@ -638,10 +638,15 @@
 					<p>Your microphone is muted</p>
 				</div>
 				<div class="flex items-center">
-					<button type="button" class="btn bg-white/15 font-normal px-2.5 h-8">
+					<button
+						type="button"
+						class="btn bg-white/15 font-normal px-2.5 h-8 hover:bg-white/20"
+					>
 						Unmute
 					</button>
-					<span class="cursor-pointer size-8 flex items-center justify-center">
+					<span
+						class="close-btn cursor-pointer size-8 flex items-center justify-center hover:bg-white/20 rounded-md"
+					>
 						<svg class="icon size-3">
 							<use href="#icon-close"></use>
 						</svg>
@@ -649,7 +654,17 @@
 				</div>
 			</div>
 			<div
-				class="flex flex-col max-w-full justify-center items-center w-[56.25rem] h-[31.25rem] relative rounded-2xl overflow-hidden px-10.5"
+				id="record-screen-blocked"
+				class="flex flex-col max-w-full justify-center items-center w-[56.25rem] h-[31.25rem] relative rounded-2xl overflow-hidden px-10.5 bg-white hidden"
+			>
+				<p class="max-w-[19.6875rem] text-center">
+					To start recording, turn on your camera, microphone, or share your
+					screen
+				</p>
+			</div>
+			<div
+				id="record-screen"
+				class="flex flex-col max-w-full justify-center items-center w-[56.25rem] h-[31.25rem] relative rounded-2xl overflow-hidden px-10.5 py-14"
 			>
 				<div class="record-start-time hidden">
 					<span>
@@ -674,7 +689,7 @@
 					class="absolute inset-0 w-full h-full object-cover"
 				/>
 				<div
-					class="grid grid-cols-[200px_1fr] gap-4 h-[24.125rem] relative z-1"
+					class="recorder-polygon-grid grid grid-cols-[200px_1fr] gap-4 h-full relative z-1"
 				>
 					<div class="recorder-box-webcam h-full relative">
 						<div class="recorder-resizer hidden">
@@ -705,12 +720,12 @@
 				</div>
 			</div>
 			<ul class="flex items-center gap-x-5 mt-8">
-				<li class="dropdown-wrapper recorder-nav-item disabled">
+				<li id="recorder-nav-camera" class="dropdown-wrapper recorder-nav-item">
 					<div class="dropdown-btn recorder-nav-item-top">
 						<svg class="icon icon-md [.disabled_&]:hidden">
 							<use href="#icon-camera"></use>
 						</svg>
-						<svg class="icon icon-md [.disabled_&]:flex">
+						<svg class="icon icon-md hidden [.disabled_&]:flex">
 							<use href="#icon-camera-disabled"></use>
 						</svg>
 						<svg class="icon w-2.5 h-1.5">
@@ -751,18 +766,22 @@
 								</div>
 							</li>
 							<li
+								id="hide-camera"
 								class="cursor-pointer flex items-center justify-between p-2 rounded-lg hover:bg-red-500/6 [&.active]:bg-red-500/12"
 							>
 								<span class="text-sm text-red-500">Hide Camera</span>
 							</li>
 							<li class="border-t border-gray-600 my-2"></li>
-							<li class="recorder-nav-dropdown-item">
+							<li
+								class="recorder-nav-dropdown-item"
+								data-popup-btn-id="webcam-background-effects"
+							>
 								<span class="text-sm font-medium">Webcam Backgrounds</span>
 							</li>
 						</ul>
 					</div>
 				</li>
-				<li class="dropdown-wrapper recorder-nav-item active">
+				<li id="recorder-nav-mic" class="dropdown-wrapper recorder-nav-item">
 					<div class="dropdown-btn recorder-nav-item-top">
 						<svg class="icon icon-md [.disabled_&]:hidden">
 							<use href="#icon-microphone"></use>
@@ -812,6 +831,7 @@
 							</li>
 							<li class="border-t border-gray-600 my-2"></li>
 							<li
+								id="mute-mic"
 								class="cursor-pointer flex items-center justify-between p-2 rounded-lg hover:bg-red-500/6 [&.active]:bg-red-500/12"
 							>
 								<span class="text-sm text-red-500">Mute Microphone</span>
@@ -863,55 +883,35 @@
 									</button>
 								</div>
 							</div>
-							<div class="max-h-[19.5625rem] overflow-y-auto px-3 pb-5">
-								<span class="block mt-3.5"> Camera </span>
+							<div class="max-h-[19.5625rem] overflow-y-auto px-3 pb-5 mt-3.5">
+								<span class="block"> Camera </span>
 								<ul class="recorder-layout-list">
 									<li>
-										<svg class="icon size-7">
-											<use href="#icon-user"></use>
-										</svg>
-									</li>
-									<li>
-										<div
-											class="flex items-center justify-center bg-gray-500 rounded-lg h-13 w-4/5 text-[#797E89]"
-										>
+										<input type="radio" name="layout" id="camera-layout-1" />
+										<label for="camera-layout-1">
 											<svg class="icon size-7">
 												<use href="#icon-user"></use>
 											</svg>
-										</div>
+										</label>
+									</li>
+									<li>
+										<input type="radio" name="layout" id="camera-layout-2" />
+										<label for="camera-layout-2">
+											<div
+												class="flex items-center justify-center bg-gray-500 rounded-lg h-13 w-4/5 text-[#797E89]"
+											>
+												<svg class="icon size-7">
+													<use href="#icon-user"></use>
+												</svg>
+											</div>
+										</label>
 									</li>
 								</ul>
 								<span class="block mt-5"> Screen </span>
 								<ul class="recorder-layout-list">
-									<li class="active">
-										<svg
-											width="48"
-											height="28"
-											viewBox="0 0 48 28"
-											fill="none"
-											xmlns="http://www.w3.org/2000/svg"
-										>
-											<rect width="48" height="4" rx="2" fill="#797E89" />
-											<rect
-												y="12"
-												width="32.3077"
-												height="4"
-												rx="2"
-												fill="#797E89"
-											/>
-											<rect
-												y="24"
-												width="48"
-												height="4"
-												rx="2"
-												fill="#797E89"
-											/>
-										</svg>
-									</li>
 									<li>
-										<div
-											class="flex items-center justify-center bg-gray-500 rounded-lg h-13 w-4/5 text-[#797E89]"
-										>
+										<input type="radio" name="layout" id="screen-layout-1" />
+										<label for="screen-layout-1">
 											<svg
 												width="48"
 												height="28"
@@ -935,40 +935,50 @@
 													fill="#797E89"
 												/>
 											</svg>
-										</div>
+										</label>
+									</li>
+									<li>
+										<input type="radio" name="layout" id="screen-layout-2" />
+										<label for="screen-layout-2">
+											<div
+												class="flex items-center justify-center bg-gray-500 rounded-lg h-13 w-4/5 text-[#797E89]"
+											>
+												<svg
+													width="48"
+													height="28"
+													viewBox="0 0 48 28"
+													fill="none"
+													xmlns="http://www.w3.org/2000/svg"
+												>
+													<rect width="48" height="4" rx="2" fill="#797E89" />
+													<rect
+														y="12"
+														width="32.3077"
+														height="4"
+														rx="2"
+														fill="#797E89"
+													/>
+													<rect
+														y="24"
+														width="48"
+														height="4"
+														rx="2"
+														fill="#797E89"
+													/>
+												</svg>
+											</div>
+										</label>
 									</li>
 								</ul>
 								<span class="block mt-5"> Camera+Screen </span>
 								<ul class="recorder-layout-list">
 									<li>
-										<svg
-											width="48"
-											height="28"
-											viewBox="0 0 48 28"
-											fill="none"
-											xmlns="http://www.w3.org/2000/svg"
-										>
-											<rect width="48" height="4" rx="2" fill="#797E89" />
-											<rect
-												y="12"
-												width="32.3077"
-												height="4"
-												rx="2"
-												fill="#797E89"
-											/>
-											<rect
-												y="24"
-												width="48"
-												height="4"
-												rx="2"
-												fill="#797E89"
-											/>
-										</svg>
-									</li>
-									<li>
-										<div
-											class="flex items-center justify-center bg-gray-500 rounded-lg h-13 w-4/5 text-[#797E89]"
-										>
+										<input
+											type="radio"
+											name="layout"
+											id="camera-screen-layout-1"
+										/>
+										<label for="camera-screen-layout-1">
 											<svg
 												width="48"
 												height="28"
@@ -992,7 +1002,44 @@
 													fill="#797E89"
 												/>
 											</svg>
-										</div>
+										</label>
+									</li>
+									<li>
+										<input
+											type="radio"
+											name="layout"
+											id="camera-screen-layout-2"
+											checked
+										/>
+										<label for="camera-screen-layout-2">
+											<div
+												class="flex items-center justify-center bg-gray-500 rounded-lg h-13 w-4/5 text-[#797E89]"
+											>
+												<svg
+													width="48"
+													height="28"
+													viewBox="0 0 48 28"
+													fill="none"
+													xmlns="http://www.w3.org/2000/svg"
+												>
+													<rect width="48" height="4" rx="2" fill="#797E89" />
+													<rect
+														y="12"
+														width="32.3077"
+														height="4"
+														rx="2"
+														fill="#797E89"
+													/>
+													<rect
+														y="24"
+														width="48"
+														height="4"
+														rx="2"
+														fill="#797E89"
+													/>
+												</svg>
+											</div>
+										</label>
 									</li>
 								</ul>
 							</div>
@@ -1132,21 +1179,21 @@
 							<ul
 								class="recorder-aspect-ratio-list grid grid-cols-2 gap-2 mt-3.5"
 							>
-								<li>
+								<li class="active" data-aspect-ratio="16:9">
 									<span class="w-11.5 h-6.5"></span>
 									<span>16:9</span>
 								</li>
-								<li class="active">
+								<li data-aspect-ratio="9:16">
 									<span class="w-4 h-6.5"></span>
 									<span>9:16</span>
 								</li>
-								<li>
+								<li data-aspect-ratio="1:1">
 									<span class="size-6.5"></span>
 									<span>1:1</span>
 								</li>
-								<li>
+								<li data-aspect-ratio="4:5">
 									<span class="w-8 h-6.5"></span>
-									<span>4:3</span>
+									<span>4:5</span>
 								</li>
 							</ul>
 						</div>
@@ -1357,12 +1404,86 @@
 				</div>
 			</div>
 		</div>
+		<div class="modal hidden" data-popup-id="webcam-background-effects">
+			<div class="modal-body w-[30rem] p-6">
+				<button class="modal-close-btn">
+					<svg class="icon size-3">
+						<use href="#icon-close"></use>
+					</svg>
+				</button>
+				<h2 class="text-center w-full">Webcam Background Effects</h2>
+				<div class="mt-5 relative">
+					<img
+						src="./assets/images/background/bg-1.png"
+						alt="Background 1"
+						class="rounded-lg object-cover size-full"
+					/>
+					<button
+						class="btn btn-box-white border border-gray-600 absolute bottom-4 right-2.5"
+					>
+						<svg class="icon icon-md">
+							<use href="#icon-flip"></use>
+						</svg>
+					</button>
+				</div>
+				<ul class="bg-choose-list [&>li]:h-20">
+					<li class="bg-gray-100 border border-gray-600">
+						<div class="relative z-1">
+							<svg class="icon icon-md">
+								<use href="#icon-disable"></use>
+							</svg>
+							<span class="text-[13px] font-medium">None</span>
+						</div>
+					</li>
+					<li>
+						<img
+							src="./assets/images/background/bg-blur.png"
+							alt="Background Blur"
+						/>
+						<div class="relative z-1">
+							<svg class="icon icon-md">
+								<use href="#icon-blur"></use>
+							</svg>
+							<span class="text-[13px] font-medium">Blur</span>
+						</div>
+					</li>
+					<li class="bg-gray-100">
+						<div class="relative z-1">
+							<svg class="icon icon-md">
+								<use href="#icon-add-image"></use>
+							</svg>
+							<span class="text-[13px] font-medium">Custom</span>
+						</div>
+					</li>
+					<li class="active">
+						<img src="./assets/images/background/bg-2.png" alt="Background 2" />
+					</li>
+					<li>
+						<img src="./assets/images/background/bg-3.png" alt="Background 3" />
+					</li>
+					<li>
+						<img src="./assets/images/background/bg-4.png" alt="Background 4" />
+					</li>
+					<li>
+						<img src="./assets/images/background/bg-5.png" alt="Background 5" />
+					</li>
+					<li>
+						<img src="./assets/images/background/bg-6.png" alt="Background 6" />
+					</li>
+					<li>
+						<img src="./assets/images/background/bg-7.png" alt="Background 7" />
+					</li>
+				</ul>
+			</div>
+		</div>
 		<script
 			src="https://code.jquery.com/jquery-3.7.1.min.js"
 			integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
 			crossorigin="anonymous"
 		></script>
 		<script src="./assets/js/dropdown.js"></script>
+		<script src="./assets/js/recorder.js"></script>
+		<script src="./assets/js/popup.js"></script>
 		<script src="./assets/js/main.js"></script>
 	</body>
 </html>

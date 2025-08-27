@@ -145,9 +145,14 @@
 	.recorder-layout-list {
 		@apply grid grid-cols-2 gap-3 mt-2;
 		li {
-			@apply flex items-center justify-center bg-gray-300 rounded-lg h-17.5 text-[#797E89] cursor-pointer;
-			&.active {
-				@apply border-2 border-white ring-2 ring-blue-500;
+			label {
+				@apply flex items-center justify-center bg-gray-300 rounded-lg h-17.5 text-[#797E89] cursor-pointer;
+			}
+			input {
+				@apply hidden;
+				&:checked + label {
+					@apply border-2 border-white ring-2 ring-blue-500;
+				}
 			}
 		}
 	}
@@ -212,5 +217,53 @@
 	}
 	.slider:focus::-moz-range-thumb {
 		@apply ring-2 ring-blue-500 ring-offset-2;
+	}
+	.aspect-16-9 {
+		@apply w-[56.25rem]! h-[31.25rem]! p-6!;
+	}
+	.aspect-9-16 {
+		@apply w-[18.75rem]! h-[31.25rem]! p-6!;
+		.recorder-polygon-grid {
+			@apply flex! flex-col! items-center! justify-center! h-full!;
+		}
+		.recorder-box-screen,
+		.recorder-box-webcam {
+			@apply h-[156px]! w-full!;
+		}
+	}
+	.aspect-1-1 {
+		@apply w-[31.25rem]! h-[31.25rem]! p-6!;
+		.recorder-polygon-grid {
+			@apply flex! flex-col! items-center! justify-center! h-full!;
+		}
+		.recorder-box-screen,
+		.recorder-box-webcam {
+			@apply h-auto! w-auto! max-h-[40%]!;
+		}
+	}
+	.aspect-4-5 {
+		@apply w-[25rem]! h-[31.25rem]! p-6!;
+		.recorder-polygon-grid {
+			@apply flex! flex-col! items-center! justify-center! h-full!;
+			.recorder-box-screen,
+			.recorder-box-webcam {
+				@apply h-auto! max-h-[40%]! w-full!;
+			}
+		}
+	}
+	#record-screen.camera-screen-layout-1 {
+		@apply p-0!;
+		.recorder-polygon-grid {
+			@apply grid-cols-1!;
+		}
+		.recorder-box-screen {
+			@apply size-full! max-h-full!;
+		}
+		.recorder-box-webcam {
+			@apply size-[144px]! rounded-full! absolute! bottom-10! left-10! max-h-full! z-1!;
+		}
+	}
+	#record-screen.camera-screen-layout-2 {
+		@apply p-10.5!;
 	}
 }

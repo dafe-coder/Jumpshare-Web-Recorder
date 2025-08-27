@@ -11,7 +11,6 @@ const dropdown = {
 
 			const $btn = $(e.currentTarget)
 			const $dropdownWrapper = $btn.closest('.dropdown-wrapper')
-
 			this.closeSiblingDropdowns($dropdownWrapper)
 
 			this.toggleDropdown($dropdownWrapper)
@@ -43,11 +42,15 @@ const dropdown = {
 
 	closeAllDropdowns() {
 		$('.dropdown-body').addClass('hidden')
+		$('.dropdown-wrapper').removeClass('active')
+		$('.dropdown-btn').removeClass('active')
 	},
 
 	closeDropdown($dropdownWrapper) {
 		const $dropdown = $dropdownWrapper || $('.dropdown-wrapper')
 		$dropdown.find('.dropdown-body').first().addClass('hidden')
+		$dropdown.removeClass('active')
+		$dropdown.find('.dropdown-btn').removeClass('active')
 	},
 
 	closeDropdownWithNested($dropdownWrapper) {
@@ -56,6 +59,8 @@ const dropdown = {
 		$dropdown.find('.dropdown-body').first().addClass('hidden')
 
 		$dropdown.find('.dropdown-body').addClass('hidden')
+		$dropdown.removeClass('active')
+		$dropdown.find('.dropdown-btn').removeClass('active')
 	},
 
 	toggleDropdown($dropdownWrapper) {
@@ -65,6 +70,8 @@ const dropdown = {
 
 		if (isHidden) {
 			$dropdownBody.removeClass('hidden')
+			$dropdown.addClass('active')
+			$dropdown.find('.dropdown-btn').addClass('active')
 		} else {
 			this.closeDropdownWithNested($dropdown)
 		}
@@ -81,6 +88,8 @@ const dropdown = {
 			) {
 				e.stopPropagation()
 				$dropdownBody.addClass('hidden')
+				$dropdownWrapper.removeClass('active')
+				$dropdownWrapper.find('.dropdown-btn').removeClass('active')
 			}
 		})
 	},
