@@ -298,6 +298,9 @@
   .mb-\[5px\] {
     margin-bottom: 5px;
   }
+  .ml-2 {
+    margin-left: calc(var(--spacing) * 2);
+  }
   .ml-6 {
     margin-left: calc(var(--spacing) * 6);
   }
@@ -844,6 +847,15 @@
   .text-white {
     color: var(--color-white);
   }
+  .transition-all {
+    transition-property: all;
+    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
+    transition-duration: var(--tw-duration, var(--default-transition-duration));
+  }
+  .duration-300 {
+    --tw-duration: 300ms;
+    transition-duration: 300ms;
+  }
   .outline-none {
     --tw-outline-style: none;
     outline-style: none;
@@ -883,6 +895,11 @@
       }
     }
   }
+  .\[\&\.active\]\:left-\[calc\(50\%-4px\)\] {
+    &.active {
+      left: calc(50% - 4px);
+    }
+  }
   .\[\&\.active\]\:bg-blue-500\/15 {
     &.active {
       background-color: color-mix(in srgb, #2f76ff 15%, transparent);
@@ -899,8 +916,8 @@
       }
     }
   }
-  .\[\&\.active\]\:text-dark-800 {
-    &.active {
+  .\[\&\:checked\+label\]\:text-dark-800 {
+    &:checked+label {
       color: var(--color-dark-800);
     }
   }
@@ -938,6 +955,11 @@
       display: none;
     }
   }
+  .\[\.selected_\&\]\:flex {
+    .selected & {
+      display: flex;
+    }
+  }
 }
 @layer components {
   .btn {
@@ -966,6 +988,11 @@
         background-color: var(--color-gray-hovered-200);
       }
     }
+  }
+  .btn[disabled] {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 50%;
   }
   .btn-red {
     background-color: var(--color-red-500);
@@ -1057,6 +1084,10 @@
     &>span {
       background-color: var(--color-white);
     }
+    &>span {
+      --tw-shadow: 0px 2px 5px var(--tw-shadow-color, rgba(0, 0, 0, 0.25));
+      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+    }
   }
   .recorder-resizer-nav {
     position: absolute;
@@ -1137,6 +1168,20 @@
     display: flex;
     align-items: center;
     column-gap: calc(var(--spacing) * 3);
+  }
+  .recorder-nav-dropdown-selectable-item {
+    .recorder-nav-dropdown-item {
+      color: var(--color-blue-500);
+      &.selected {
+        background-color: color-mix(in srgb, #2f76ff 15%, transparent);
+        @supports (color: color-mix(in lab, red, red)) {
+          background-color: color-mix(in oklab, var(--color-blue-500) 15%, transparent);
+        }
+      }
+      span {
+        color: var(--color-dark-800);
+      }
+    }
   }
   .recorder-nav-dropdown-item {
     display: flex;
@@ -1376,18 +1421,22 @@
       }
     }
   }
-  .prompter {
-    position: absolute;
+  .prompter-modal {
+    position: fixed;
     top: calc(1/2 * 100%);
     left: calc(1/2 * 100%);
     z-index: 100;
     --tw-translate-x: calc(calc(1/2 * 100%) * -1);
     --tw-translate-y: calc(calc(1/2 * 100%) * -1);
     translate: var(--tw-translate-x) var(--tw-translate-y);
+    cursor: default;
     border-radius: var(--radius-2xl);
     background-color: var(--color-white);
     --tw-shadow: 0px 4px 10px var(--tw-shadow-color, rgba(0, 0, 0, 0.25));
     box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+  }
+  .prompter-drag-button {
+    cursor: grab;
   }
   .prompter-header-nav {
     position: absolute;
@@ -1556,7 +1605,6 @@
   .aspect-16-9 {
     height: 31.25rem !important;
     width: 56.25rem !important;
-    padding: calc(var(--spacing) * 6) !important;
   }
   .aspect-9-16 {
     height: 31.25rem !important;
@@ -1629,9 +1677,6 @@
       border-radius: calc(infinity * 1px) !important;
     }
   }
-  #record-screen.camera-screen-layout-2 {
-    padding: calc(var(--spacing) * 10.5) !important;
-  }
 }
 @layer base {
   body {
@@ -1685,6 +1730,10 @@
   initial-value: solid;
 }
 @property --tw-font-weight {
+  syntax: "*";
+  inherits: false;
+}
+@property --tw-duration {
   syntax: "*";
   inherits: false;
 }
@@ -1753,10 +1802,6 @@
   inherits: false;
   initial-value: 0 0 #0000;
 }
-@property --tw-duration {
-  syntax: "*";
-  inherits: false;
-}
 @property --tw-ease {
   syntax: "*";
   inherits: false;
@@ -1774,6 +1819,7 @@
       --tw-translate-z: 0;
       --tw-border-style: solid;
       --tw-font-weight: initial;
+      --tw-duration: initial;
       --tw-shadow: 0 0 #0000;
       --tw-shadow-color: initial;
       --tw-shadow-alpha: 100%;
@@ -1788,7 +1834,6 @@
       --tw-ring-offset-width: 0px;
       --tw-ring-offset-color: #fff;
       --tw-ring-offset-shadow: 0 0 #0000;
-      --tw-duration: initial;
       --tw-ease: initial;
       --tw-content: "";
     }

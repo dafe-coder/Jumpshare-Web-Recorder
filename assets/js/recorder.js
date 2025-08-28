@@ -1,8 +1,12 @@
 const recorder = {
+	startRecordBtn: $('#start-record'),
+
 	init() {
 		this.initEvent()
 		this.initAspectRatio()
 		this.initLayout()
+		this.initChooseCamera()
+		this.initStartRecord()
 	},
 
 	initEvent() {
@@ -42,10 +46,12 @@ const recorder = {
 	showRecordScreen() {
 		$('#record-screen-blocked').addClass('hidden')
 		$('#record-screen').removeClass('hidden')
+		this.startRecordBtn.removeAttr('disabled')
 	},
 	showRecordScreenBlocked() {
 		$('#record-screen-blocked').removeClass('hidden')
 		$('#record-screen').addClass('hidden')
+		this.startRecordBtn.attr('disabled', true)
 	},
 
 	initAspectRatio() {
@@ -68,6 +74,28 @@ const recorder = {
 				return (className.match(/(^|\s)\S+-layout-[^\s]+/g) || []).join(' ')
 			})
 			$('#record-screen').addClass(`${$(this).attr('id')}`)
+		})
+	},
+	initChooseCamera() {
+		const $chooseCameraList = $('#choose-camera-list')
+		$chooseCameraList.on('click', '.recorder-nav-dropdown-item', function (e) {
+			console.log($chooseCameraList.find('.recorder-nav-dropdown-item'))
+
+			$chooseCameraList
+				.find('.recorder-nav-dropdown-item')
+				.removeClass('selected')
+			$(this).addClass('selected')
+			const currentText = $(this).find('span').text()
+			$(this)
+				.closest('.recorder-nav-dropdown-selectable-item')
+				.find('.recorder-nav-dropdown-selectable-current')
+				.text(currentText)
+		})
+	},
+	initStartRecord() {
+		this.startRecordBtn.on('click', function (e) {
+			$(this).addClass('hidden')
+			$('.record-start-nav').removeClass('hidden')
 		})
 	},
 }

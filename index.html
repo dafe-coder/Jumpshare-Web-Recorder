@@ -391,6 +391,14 @@
 					fill-opacity="0.15"
 				/>
 			</symbol>
+			<symbol id="icon-check-circle" viewBox="0 0 24 24" fill="none">
+				<path
+					fill-rule="evenodd"
+					clip-rule="evenodd"
+					d="M12 21C13.1819 21 14.3522 20.7672 15.4442 20.3149C16.5361 19.8626 17.5282 19.1997 18.364 18.364C19.1997 17.5282 19.8626 16.5361 20.3149 15.4442C20.7672 14.3522 21 13.1819 21 12C21 10.8181 20.7672 9.64778 20.3149 8.55585C19.8626 7.46392 19.1997 6.47177 18.364 5.63604C17.5282 4.80031 16.5361 4.13738 15.4442 3.68508C14.3522 3.23279 13.1819 3 12 3C9.61305 3 7.32387 3.94821 5.63604 5.63604C3.94821 7.32387 3 9.61305 3 12C3 14.3869 3.94821 16.6761 5.63604 18.364C7.32387 20.0518 9.61305 21 12 21ZM11.768 15.64L16.768 9.64L15.232 8.36L10.932 13.519L8.707 11.293L7.293 12.707L10.293 15.707L11.067 16.481L11.768 15.64Z"
+					fill="currentColor"
+				/>
+			</symbol>
 		</svg>
 		<div class="record-header">
 			<a href="./index.html" class="flex items-center gap-3">
@@ -684,6 +692,7 @@
 					<span>Cancel</span>
 				</div>
 				<img
+					id="bg-video-preview"
 					src="./assets/images/background/main-bg.png"
 					alt=""
 					class="absolute inset-0 w-full h-full object-cover"
@@ -735,13 +744,16 @@
 					<span class="recorder-nav-item-bottom">Camera</span>
 					<div class="dropdown-body w-[14.2rem] hidden">
 						<ul class="dropdown-content">
-							<li class="dropdown-wrapper recorder-nav-dropdown-item">
+							<li
+								class="dropdown-wrapper recorder-nav-dropdown-item recorder-nav-dropdown-selectable-item"
+							>
 								<div
 									class="dropdown-btn flex items-center justify-between size-full"
 								>
 									<div class="flex flex-col gap-1">
 										<span class="font-medium text-sm">Camera</span>
-										<span class="text-xs text-gray-800"
+										<span
+											class="recorder-nav-dropdown-selectable-current text-xs text-gray-800"
 											>iPhone 15 Pro (Front Cam)</span
 										>
 									</div>
@@ -752,15 +764,30 @@
 								<div
 									class="dropdown-body w-[18.75rem] p-2 left-[calc(100%+15px)] top-0 bottom-auto translate-x-0 hidden"
 								>
-									<div class="dropdown-content">
-										<div class="recorder-nav-dropdown-item">
+									<div id="choose-camera-list" class="dropdown-content">
+										<div class="recorder-nav-dropdown-item selected">
 											<span>OBS Virtual Camera</span>
+											<svg
+												class="icon icon-md flex-shrink-0 hidden [.selected_&]:flex"
+											>
+												<use href="#icon-check-circle"></use>
+											</svg>
 										</div>
 										<div class="recorder-nav-dropdown-item">
 											<span>iPhone 15 Pro (System)</span>
+											<svg
+												class="icon icon-md flex-shrink-0 hidden [.selected_&]:flex"
+											>
+												<use href="#icon-check-circle"></use>
+											</svg>
 										</div>
 										<div class="recorder-nav-dropdown-item">
 											<span>Sony A6400 - Mirrorless Camera</span>
+											<svg
+												class="icon icon-md flex-shrink-0 hidden [.selected_&]:flex"
+											>
+												<use href="#icon-check-circle"></use>
+											</svg>
 										</div>
 									</div>
 								</div>
@@ -848,7 +875,7 @@
 					<span class="recorder-nav-item-bottom">Screen</span>
 				</li>
 				<li class="recorder-nav-item">
-					<div class="dropdown-btn recorder-nav-item-top">
+					<div id="prompter-btn" class="dropdown-btn recorder-nav-item-top">
 						<svg class="icon icon-md">
 							<use href="#icon-notes"></use>
 						</svg>
@@ -1062,18 +1089,38 @@
 								class="relative grid grid-cols-2 bg-gray-300 rounded-lg h-9.5 mt-3.5 mx-3"
 							>
 								<div
-									class="absolute w-1/2 bg-white top-1 left-1 bottom-1 rounded-sm"
+									class="bg-video-type-nav absolute w-1/2 bg-white top-1 left-1 bottom-1 rounded-sm [&.active]:left-[calc(50%-4px)] transition-all duration-300"
 								></div>
-								<span
-									class="active flex items-center justify-center relative z-1 h-full cursor-pointer font-medium text-gray-800 [&.active]:text-dark-800"
-									>Image</span
-								>
-								<span
-									class="flex items-center justify-center relative z-1 h-full cursor-pointer font-medium text-gray-800"
-									>Color</span
-								>
+								<div>
+									<input
+										type="radio"
+										name="bg-video-type"
+										id="bg-video-type-image"
+										class="hidden [&:checked+label]:text-dark-800"
+										checked
+									/>
+									<label
+										for="bg-video-type-image"
+										class="flex items-center justify-center relative z-1 h-full cursor-pointer font-medium text-gray-800"
+										>Image</label
+									>
+								</div>
+								<div>
+									<input
+										type="radio"
+										name="bg-video-type"
+										id="bg-video-type-color"
+										class="hidden [&:checked+label]:text-dark-800"
+									/>
+									<label
+										for="bg-video-type-color"
+										class="flex items-center justify-center relative z-1 h-full cursor-pointer font-medium text-gray-800"
+										>Color</label
+									>
+								</div>
 							</div>
 							<ul
+								id="bg-video-type-image-list"
 								class="bg-choose-list grid-cols-2 gap-[15px] [&>li]:h-20 pt-2 mt-2 pb-5 max-h-[15.9375rem] overflow-y-auto px-3"
 							>
 								<li class="bg-gray-100">
@@ -1086,43 +1133,38 @@
 								</li>
 								<li class="active">
 									<img
-										src="./assets/images/background/bg-2.png"
+										src="./assets/images/background/video/1.png"
 										alt="Background 2"
 									/>
 								</li>
 								<li>
 									<img
-										src="./assets/images/background/bg-3.png"
+										src="./assets/images/background/video/2.png"
 										alt="Background 3"
 									/>
 								</li>
 								<li>
 									<img
-										src="./assets/images/background/bg-4.png"
+										src="./assets/images/background/video/3.png"
 										alt="Background 4"
 									/>
 								</li>
 								<li>
 									<img
-										src="./assets/images/background/bg-5.png"
+										src="./assets/images/background/video/4.png"
 										alt="Background 5"
 									/>
 								</li>
 								<li>
 									<img
-										src="./assets/images/background/bg-6.png"
+										src="./assets/images/background/video/5.png"
 										alt="Background 6"
-									/>
-								</li>
-								<li>
-									<img
-										src="./assets/images/background/bg-7.png"
-										alt="Background 7"
 									/>
 								</li>
 							</ul>
 							<div
-								class="max-h-[15.9375rem] overflow-y-auto px-3 mt-3.5 hidden"
+								id="bg-video-type-color-list"
+								class="max-h-[15.9375rem] overflow-y-auto px-3 mt-2 pt-2 hidden"
 							>
 								<span>Solid Colors</span>
 								<ul class="recorder-bg-colors mt-4">
@@ -1144,18 +1186,98 @@
 									</li>
 								</ul>
 								<span class="block mt-0.5">Gradients</span>
-								<ul class="recorder-bg-colors mt-4">
-									<li class="bg-[#EAEAEA]"></li>
-									<li class="bg-[#F2E8CF]"></li>
-									<li class="active bg-[#FFE48C]"></li>
-									<li class="bg-[#90DDD5]"></li>
-									<li class="bg-[#BAF8B6]"></li>
-									<li class="bg-[#3b8336]"></li>
+								<ul class="recorder-bg-colors recorder-bg-gradient-list mt-4">
+									<li
+										style="
+											background: linear-gradient(
+												180deg,
+												#f2e8cf 0%,
+												#848484 100%
+											);
+										"
+									></li>
+									<li
+										style="
+											background: linear-gradient(
+												180deg,
+												#f2e8cf 0%,
+												#fbd472 100%
+											);
+										"
+									></li>
+									<li
+										style="
+											background: linear-gradient(
+												180deg,
+												#a7ff8c 0%,
+												#9cda44 100%
+											);
+										"
+									></li>
+									<li
+										style="
+											background: linear-gradient(
+												180deg,
+												#d090dd 0%,
+												#8929d2 100%
+											);
+										"
+									></li>
+									<li
+										style="
+											background: linear-gradient(
+												180deg,
+												#baf8b6 0%,
+												#848484 100%
+											);
+										"
+									></li>
+									<li
+										style="
+											background: linear-gradient(
+												180deg,
+												#3b8336 0%,
+												#848484 100%
+											);
+										"
+									></li>
 									<li class="bg-[#C8E7FC]"></li>
-									<li class="bg-[#FFBEBE]"></li>
-									<li class="bg-[#DFC9FF]"></li>
-									<li class="bg-[#D0A7FF]"></li>
-									<li class="bg-[#FFA4FF]"></li>
+									<li
+										style="
+											background: linear-gradient(
+												180deg,
+												#ffbebe 0%,
+												#848484 100%
+											);
+										"
+									></li>
+									<li
+										style="
+											background: linear-gradient(
+												180deg,
+												#dfc9ff 0%,
+												#848484 100%
+											);
+										"
+									></li>
+									<li
+										style="
+											background: linear-gradient(
+												180deg,
+												#d0a7ff 0%,
+												#848484 100%
+											);
+										"
+									></li>
+									<li
+										style="
+											background: linear-gradient(
+												180deg,
+												#ffa4ff 0%,
+												#848484 100%
+											);
+										"
+									></li>
 									<li>
 										<svg class="icon icon-sm">
 											<use href="#icon-plus"></use>
@@ -1290,9 +1412,9 @@
 				</svg>
 			</button>
 			<div class="prompter-header-nav">
-				<span></span>
-				<span></span>
-				<span></span>
+				<span class="btn-close"></span>
+				<span class="minimize-btn"></span>
+				<span class="maximize-btn"></span>
 			</div>
 			<div class="flex flex-col h-full">
 				<div class="flex-1 relative pt-11.5 px-7">
@@ -1320,7 +1442,7 @@
 						<span class="w-[140px] flex items-center">
 							<input type="range" min="0" max="100" value="50" class="slider" />
 						</span>
-						<span class="cursor-pointer mr-2.5">
+						<span class="cursor-pointer mr-2.5 ml-2">
 							<svg class="icon w-3.5 h-3.5">
 								<use href="#icon-faster"></use>
 							</svg>
@@ -1484,6 +1606,8 @@
 		<script src="./assets/js/dropdown.js"></script>
 		<script src="./assets/js/recorder.js"></script>
 		<script src="./assets/js/popup.js"></script>
+		<script src="./assets/js/prompter.js"></script>
+		<script src="./assets/js/background.js"></script>
 		<script src="./assets/js/main.js"></script>
 	</body>
 </html>

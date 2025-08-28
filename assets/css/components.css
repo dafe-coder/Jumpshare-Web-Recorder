@@ -5,6 +5,9 @@
 	.btn-box-white {
 		@apply bg-white text-dark-800 size-10 p-0 justify-center hover:bg-gray-hovered-200;
 	}
+	.btn[disabled] {
+		@apply opacity-50 cursor-not-allowed pointer-events-none;
+	}
 	.btn-red {
 		@apply bg-red-500 text-white;
 	}
@@ -24,7 +27,7 @@
 		@apply text-xs text-center font-medium [.active_&]:text-blue-500 [.disabled_&]:text-red-500;
 	}
 	.recorder-resizer {
-		@apply absolute -left-0.5 -top-0.5 -right-0.5 -bottom-0.5 border-2 border-white [&>span]:absolute [&>span]:size-2.5 [&>span]:bg-white [&>span]:rounded-full [&>span]:cursor-pointer;
+		@apply absolute -left-0.5 -top-0.5 -right-0.5 -bottom-0.5 border-2 border-white [&>span]:absolute [&>span]:size-2.5 [&>span]:bg-white [&>span]:rounded-full [&>span]:cursor-pointer [&>span]:shadow-circle;
 	}
 	.recorder-resizer-nav {
 		@apply absolute left-1/2 -translate-x-1/2 bottom-[calc(100%+10px)] bg-white rounded-xl p-1 shadow-sm z-100;
@@ -48,6 +51,14 @@
 	}
 	.record-start-nav {
 		@apply flex items-center gap-x-3;
+	}
+	.recorder-nav-dropdown-selectable-item {
+		.recorder-nav-dropdown-item {
+			@apply [&.selected]:bg-blue-500/15 text-blue-500;
+			span {
+				@apply text-dark-800;
+			}
+		}
 	}
 	.recorder-nav-dropdown-item {
 		@apply cursor-pointer flex items-center justify-between px-2 min-h-9 rounded-lg hover:bg-gray-hovered-200 [&.active]:bg-gray-400 py-1.5;
@@ -157,8 +168,12 @@
 		}
 	}
 
-	.prompter {
-		@apply bg-white rounded-2xl shadow-md absolute top-1/2 left-1/2 -translate-1/2 z-100;
+	.prompter-modal {
+		@apply bg-white rounded-2xl shadow-md fixed top-1/2 left-1/2 -translate-1/2 z-100 cursor-default;
+	}
+
+	.prompter-drag-button {
+		@apply cursor-grab;
 	}
 
 	.prompter-header-nav {
@@ -219,7 +234,7 @@
 		@apply ring-2 ring-blue-500 ring-offset-2;
 	}
 	.aspect-16-9 {
-		@apply w-[56.25rem]! h-[31.25rem]! p-6!;
+		@apply w-[56.25rem]! h-[31.25rem]!;
 	}
 	.aspect-9-16 {
 		@apply w-[18.75rem]! h-[31.25rem]! p-6!;
@@ -263,7 +278,7 @@
 			@apply size-[144px]! rounded-full! absolute! bottom-10! left-10! max-h-full! z-1!;
 		}
 	}
-	#record-screen.camera-screen-layout-2 {
+	/* #record-screen.camera-screen-layout-2 {
 		@apply p-10.5!;
-	}
+	} */
 }

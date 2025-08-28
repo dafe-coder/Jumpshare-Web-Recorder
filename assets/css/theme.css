@@ -26,4 +26,5 @@
 	/* Shadows */
 	--shadow-sm: 0px 3px 35px rgba(0, 0, 0, 0.04);
 	--shadow-md: 0px 4px 10px rgba(0, 0, 0, 0.25);
+	--shadow-circle: 0px 2px 5px rgba(0, 0, 0, 0.25);
 }
