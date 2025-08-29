@@ -1,5 +1,6 @@
 const recorder = {
 	startRecordBtn: $('#start-record'),
+	countdownSwitcher: $('#countdown-switcher'),
 
 	init() {
 		this.initEvent()
@@ -7,6 +8,7 @@ const recorder = {
 		this.initLayout()
 		this.initChooseCamera()
 		this.initStartRecord()
+		this.initWebcamShapes()
 	},
 
 	initEvent() {
@@ -14,6 +16,8 @@ const recorder = {
 		const $muteMicBtn = $('#recorder-nav-mic')
 		$('#hide-camera').on('click', () => {
 			$hideCameraBtn.addClass('disabled')
+			$('.recorder-box-webcam').addClass('hidden')
+			$('.recorder-polygon-grid').css('grid-template-columns', '1fr')
 			dropdown.closeAllDropdowns()
 			if (
 				$hideCameraBtn.hasClass('disabled') &&
@@ -76,6 +80,17 @@ const recorder = {
 			$('#record-screen').addClass(`${$(this).attr('id')}`)
 		})
 	},
+	initWebcamShapes() {
+		const $webcamShapes = $('.webcam-shapes-list li')
+		$webcamShapes.on('click', function (e) {
+			$webcamShapes.removeClass('active')
+			$(this).addClass('active')
+			$('.recorder-box-webcam').removeClass(
+				'circle square triangle-horizontal triangle-vertical'
+			)
+			$('.recorder-box-webcam').addClass($(this).data('shape'))
+		})
+	},
 	initChooseCamera() {
 		const $chooseCameraList = $('#choose-camera-list')
 		$chooseCameraList.on('click', '.recorder-nav-dropdown-item', function (e) {
@@ -93,9 +108,14 @@ const recorder = {
 		})
 	},
 	initStartRecord() {
-		this.startRecordBtn.on('click', function (e) {
-			$(this).addClass('hidden')
+		this.startRecordBtn.on('click', e => {
+			console.log(this.countdownSwitcher.is(':checked'))
+
+			this.startRecordBtn.addClass('hidden')
 			$('.record-start-nav').removeClass('hidden')
+			if (this.countdownSwitcher.is(':checked')) {
+				$('.record-start-time').removeClass('hidden')
+			}
 		})
 	},
 }

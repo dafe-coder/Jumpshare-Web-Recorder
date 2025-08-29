@@ -17,6 +17,12 @@ const popup = {
 		$closeBtn.on('click', () => {
 			this.closeAllPopups()
 		})
+
+		if ($('[data-popup-close]')) {
+			$('[data-popup-close]').on('click', () => {
+				this.closeAllPopups()
+			})
+		}
 	},
 	closeAllPopups() {
 		$('.modal').addClass('hidden')

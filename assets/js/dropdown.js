@@ -12,7 +12,9 @@ const dropdown = {
 			const $btn = $(e.currentTarget)
 			const $dropdownWrapper = $btn.closest('.dropdown-wrapper')
 			this.closeSiblingDropdowns($dropdownWrapper)
-			prompter.closePrompterPopup()
+			if (!$btn.closest('.prompter-modal').length) {
+				prompter.closePrompterPopup()
+			}
 
 			this.toggleDropdown($dropdownWrapper)
 		})
